@@ -2,6 +2,7 @@ package com.want.spring.redis.reactive.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.connection.ReactiveRedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceClientConfiguration;
@@ -20,9 +21,9 @@ public class SpringRedisReactiveConfiguration {
 
 
     @Bean
+    @Primary
     public ReactiveRedisConnectionFactory connectionFactory() {
         LettuceClientConfiguration clientConfig = LettuceClientConfiguration.builder()
-                .useSsl().and()
                 .commandTimeout(Duration.ofSeconds(2))
                 .shutdownTimeout(Duration.ZERO)
                 .build();

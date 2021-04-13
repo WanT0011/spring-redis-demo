@@ -20,23 +20,23 @@ public class StringController {
     private final String RESP_STR = "success";
 
     @Resource
-    private ReactiveRedisTemplate<String,String> stringRedisTemplate;
+    private ReactiveRedisTemplate<String,String> reactiveRedisTemplate;
 
     @ApiOperation(value = "增加key-value")
     @PostMapping("ops/{key}/{value}")
     public Mono<String> addKey(@PathVariable("key")String key ,@PathVariable("value")String value){
-        return stringRedisTemplate.opsForValue().append(key,value)
+        return reactiveRedisTemplate.opsForValue().append(key,value)
                 .map(l -> RESP_STR);
     }
     @ApiOperation(value = "删除key")
     @DeleteMapping("ops/{key}")
     public Mono<String> removeKey(@PathVariable("key")String key){
-        return stringRedisTemplate.delete(key)
+        return reactiveRedisTemplate.delete(key)
                 .map(flag -> flag > 0 ? RESP_STR:"key not present!");
     }
     @ApiOperation(value = "获取key")
     @GetMapping("ops/{key}")
     public Mono<String> getKey(@PathVariable("key")String key){
-        return stringRedisTemplate.opsForValue().get(key);
+        return reactiveRedisTemplate.opsForValue().get(key);
     }
 }
