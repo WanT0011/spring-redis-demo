@@ -29,7 +29,7 @@ public class SpringRedisReactiveConfiguration {
                 .readFrom(REPLICA_PREFERRED)
                 .build();
 
-        RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration("10.1.25.28", 6379);
+        RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration("121.41.227.118", 6379);
         redisStandaloneConfiguration.setPassword("redis-pwd");
 
         return new LettuceConnectionFactory(redisStandaloneConfiguration, clientConfig);
